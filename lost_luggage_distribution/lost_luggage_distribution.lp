@@ -1,7 +1,10 @@
 \ Model lost_luggage_distribution.lp
 \ LP format - for model browsing. Use MPS format to capture full model detail.
-Minimize
-  used[0] + used[1] + used[2] + used[3] + used[4] + used[5]
+Minimize multi-objectives
+  OBJ0: Priority=1 Weight=1 AbsTol=1e-06 RelTol=0
+   used[0] + used[1] + used[2] + used[3] + used[4] + used[5]
+  OBJ1: Priority=0 Weight=1 AbsTol=1e-06 RelTol=0
+   maxTravelTime
 Subject To
  visitCustomer[0,1]: visitBy[1,0] - used[0] <= 0
  visitCustomer[0,2]: visitBy[2,0] - used[0] <= 0
@@ -99,7 +102,7 @@ Subject To
  visitCustomer[5,14]: visitBy[14,5] - used[5] <= 0
  visitCustomer[5,15]: visitBy[15,5] - used[5] <= 0
  visitCustomer[5,16]: visitBy[16,5] - used[5] <= 0
- travelTime[0]: 36.87817782917155 FromToBy[0,1,0]
+ travelTimeConstr[0]: 36.87817782917155 FromToBy[0,1,0]
    + 48.16637831516918 FromToBy[0,2,0] + 17.46424919657298 FromToBy[0,3,0]
    + 57.14017850864661 FromToBy[0,4,0] + 41.03656905736639 FromToBy[0,5,0]
    + 47.50789408087881 FromToBy[0,6,0] + 51.66236541235796 FromToBy[0,7,0]
@@ -282,8 +285,8 @@ Subject To
    + 47.4236228055175 FromToBy[16,12,0]
    + 17.88854381999832 FromToBy[16,13,0]
    + 29.06888370749727 FromToBy[16,14,0]
-   + 17.72004514666935 FromToBy[16,15,0] - 120 used[0] <= 0
- travelTime[1]: 36.87817782917155 FromToBy[0,1,1]
+   + 17.72004514666935 FromToBy[16,15,0] - travelTime[0] = 0
+ travelTimeConstr[1]: 36.87817782917155 FromToBy[0,1,1]
    + 48.16637831516918 FromToBy[0,2,1] + 17.46424919657298 FromToBy[0,3,1]
    + 57.14017850864661 FromToBy[0,4,1] + 41.03656905736639 FromToBy[0,5,1]
    + 47.50789408087881 FromToBy[0,6,1] + 51.66236541235796 FromToBy[0,7,1]
@@ -466,8 +469,8 @@ Subject To
    + 47.4236228055175 FromToBy[16,12,1]
    + 17.88854381999832 FromToBy[16,13,1]
    + 29.06888370749727 FromToBy[16,14,1]
-   + 17.72004514666935 FromToBy[16,15,1] - 120 used[1] <= 0
- travelTime[2]: 36.87817782917155 FromToBy[0,1,2]
+   + 17.72004514666935 FromToBy[16,15,1] - travelTime[1] = 0
+ travelTimeConstr[2]: 36.87817782917155 FromToBy[0,1,2]
    + 48.16637831516918 FromToBy[0,2,2] + 17.46424919657298 FromToBy[0,3,2]
    + 57.14017850864661 FromToBy[0,4,2] + 41.03656905736639 FromToBy[0,5,2]
    + 47.50789408087881 FromToBy[0,6,2] + 51.66236541235796 FromToBy[0,7,2]
@@ -650,8 +653,8 @@ Subject To
    + 47.4236228055175 FromToBy[16,12,2]
    + 17.88854381999832 FromToBy[16,13,2]
    + 29.06888370749727 FromToBy[16,14,2]
-   + 17.72004514666935 FromToBy[16,15,2] - 120 used[2] <= 0
- travelTime[3]: 36.87817782917155 FromToBy[0,1,3]
+   + 17.72004514666935 FromToBy[16,15,2] - travelTime[2] = 0
+ travelTimeConstr[3]: 36.87817782917155 FromToBy[0,1,3]
    + 48.16637831516918 FromToBy[0,2,3] + 17.46424919657298 FromToBy[0,3,3]
    + 57.14017850864661 FromToBy[0,4,3] + 41.03656905736639 FromToBy[0,5,3]
    + 47.50789408087881 FromToBy[0,6,3] + 51.66236541235796 FromToBy[0,7,3]
@@ -834,8 +837,8 @@ Subject To
    + 47.4236228055175 FromToBy[16,12,3]
    + 17.88854381999832 FromToBy[16,13,3]
    + 29.06888370749727 FromToBy[16,14,3]
-   + 17.72004514666935 FromToBy[16,15,3] - 120 used[3] <= 0
- travelTime[4]: 36.87817782917155 FromToBy[0,1,4]
+   + 17.72004514666935 FromToBy[16,15,3] - travelTime[3] = 0
+ travelTimeConstr[4]: 36.87817782917155 FromToBy[0,1,4]
    + 48.16637831516918 FromToBy[0,2,4] + 17.46424919657298 FromToBy[0,3,4]
    + 57.14017850864661 FromToBy[0,4,4] + 41.03656905736639 FromToBy[0,5,4]
    + 47.50789408087881 FromToBy[0,6,4] + 51.66236541235796 FromToBy[0,7,4]
@@ -1018,8 +1021,8 @@ Subject To
    + 47.4236228055175 FromToBy[16,12,4]
    + 17.88854381999832 FromToBy[16,13,4]
    + 29.06888370749727 FromToBy[16,14,4]
-   + 17.72004514666935 FromToBy[16,15,4] - 120 used[4] <= 0
- travelTime[5]: 36.87817782917155 FromToBy[0,1,5]
+   + 17.72004514666935 FromToBy[16,15,4] - travelTime[4] = 0
+ travelTimeConstr[5]: 36.87817782917155 FromToBy[0,1,5]
    + 48.16637831516918 FromToBy[0,2,5] + 17.46424919657298 FromToBy[0,3,5]
    + 57.14017850864661 FromToBy[0,4,5] + 41.03656905736639 FromToBy[0,5,5]
    + 47.50789408087881 FromToBy[0,6,5] + 51.66236541235796 FromToBy[0,7,5]
@@ -1202,7 +1205,7 @@ Subject To
    + 47.4236228055175 FromToBy[16,12,5]
    + 17.88854381999832 FromToBy[16,13,5]
    + 29.06888370749727 FromToBy[16,14,5]
-   + 17.72004514666935 FromToBy[16,15,5] - 120 used[5] <= 0
+   + 17.72004514666935 FromToBy[16,15,5] - travelTime[5] = 0
  visitAll[1]: visitBy[1,0] + visitBy[1,1] + visitBy[1,2] + visitBy[1,3]
    + visitBy[1,4] + visitBy[1,5] = 1
  visitAll[2]: visitBy[2,0] + visitBy[2,1] + visitBy[2,2] + visitBy[2,3]
@@ -1235,9 +1238,12 @@ Subject To
    + visitBy[15,3] + visitBy[15,4] + visitBy[15,5] = 1
  visitAll[16]: visitBy[16,0] + visitBy[16,1] + visitBy[16,2]
    + visitBy[16,3] + visitBy[16,4] + visitBy[16,5] = 1
- depotConstr: visitBy[0,0] + visitBy[0,1] + visitBy[0,2] + visitBy[0,3]
-   + visitBy[0,4] + visitBy[0,5] - used[0] - used[1] - used[2] - used[3]
-   - used[4] - used[5] >= 0
+ depotConstr[0]: visitBy[0,0] - used[0] = 0
+ depotConstr[1]: visitBy[0,1] - used[1] = 0
+ depotConstr[2]: visitBy[0,2] - used[2] = 0
+ depotConstr[3]: visitBy[0,3] - used[3] = 0
+ depotConstr[4]: visitBy[0,4] - used[4] = 0
+ depotConstr[5]: visitBy[0,5] - used[5] = 0
  ArriveConstr[0,0]: FromToBy[1,0,0] + FromToBy[2,0,0] + FromToBy[3,0,0]
    + FromToBy[4,0,0] + FromToBy[5,0,0] + FromToBy[6,0,0] + FromToBy[7,0,0]
    + FromToBy[8,0,0] + FromToBy[9,0,0] + FromToBy[10,0,0]
@@ -2462,7 +2468,7 @@ Subject To
    + FromToBy[16,9,5] + FromToBy[16,10,5] + FromToBy[16,11,5]
    + FromToBy[16,12,5] + FromToBy[16,13,5] + FromToBy[16,14,5]
    + FromToBy[16,15,5] - visitBy[16,5] = 0
- breakSymm[0]: visitBy[0,0] - visitBy[0,1] + visitBy[1,0] - visitBy[1,1]
+ breakSymm[1]: visitBy[0,0] - visitBy[0,1] + visitBy[1,0] - visitBy[1,1]
    + visitBy[2,0] - visitBy[2,1] + visitBy[3,0] - visitBy[3,1]
    + visitBy[4,0] - visitBy[4,1] + visitBy[5,0] - visitBy[5,1]
    + visitBy[6,0] - visitBy[6,1] + visitBy[7,0] - visitBy[7,1]
@@ -2471,7 +2477,7 @@ Subject To
    + visitBy[12,0] - visitBy[12,1] + visitBy[13,0] - visitBy[13,1]
    + visitBy[14,0] - visitBy[14,1] + visitBy[15,0] - visitBy[15,1]
    + visitBy[16,0] - visitBy[16,1] >= 0
- breakSymm[1]: visitBy[0,1] - visitBy[0,2] + visitBy[1,1] - visitBy[1,2]
+ breakSymm[2]: visitBy[0,1] - visitBy[0,2] + visitBy[1,1] - visitBy[1,2]
    + visitBy[2,1] - visitBy[2,2] + visitBy[3,1] - visitBy[3,2]
    + visitBy[4,1] - visitBy[4,2] + visitBy[5,1] - visitBy[5,2]
    + visitBy[6,1] - visitBy[6,2] + visitBy[7,1] - visitBy[7,2]
@@ -2480,7 +2486,7 @@ Subject To
    + visitBy[12,1] - visitBy[12,2] + visitBy[13,1] - visitBy[13,2]
    + visitBy[14,1] - visitBy[14,2] + visitBy[15,1] - visitBy[15,2]
    + visitBy[16,1] - visitBy[16,2] >= 0
- breakSymm[2]: visitBy[0,2] - visitBy[0,3] + visitBy[1,2] - visitBy[1,3]
+ breakSymm[3]: visitBy[0,2] - visitBy[0,3] + visitBy[1,2] - visitBy[1,3]
    + visitBy[2,2] - visitBy[2,3] + visitBy[3,2] - visitBy[3,3]
    + visitBy[4,2] - visitBy[4,3] + visitBy[5,2] - visitBy[5,3]
    + visitBy[6,2] - visitBy[6,3] + visitBy[7,2] - visitBy[7,3]
@@ -2489,7 +2495,7 @@ Subject To
    + visitBy[12,2] - visitBy[12,3] + visitBy[13,2] - visitBy[13,3]
    + visitBy[14,2] - visitBy[14,3] + visitBy[15,2] - visitBy[15,3]
    + visitBy[16,2] - visitBy[16,3] >= 0
- breakSymm[3]: visitBy[0,3] - visitBy[0,4] + visitBy[1,3] - visitBy[1,4]
+ breakSymm[4]: visitBy[0,3] - visitBy[0,4] + visitBy[1,3] - visitBy[1,4]
    + visitBy[2,3] - visitBy[2,4] + visitBy[3,3] - visitBy[3,4]
    + visitBy[4,3] - visitBy[4,4] + visitBy[5,3] - visitBy[5,4]
    + visitBy[6,3] - visitBy[6,4] + visitBy[7,3] - visitBy[7,4]
@@ -2498,7 +2504,7 @@ Subject To
    + visitBy[12,3] - visitBy[12,4] + visitBy[13,3] - visitBy[13,4]
    + visitBy[14,3] - visitBy[14,4] + visitBy[15,3] - visitBy[15,4]
    + visitBy[16,3] - visitBy[16,4] >= 0
- breakSymm[4]: visitBy[0,4] - visitBy[0,5] + visitBy[1,4] - visitBy[1,5]
+ breakSymm[5]: visitBy[0,4] - visitBy[0,5] + visitBy[1,4] - visitBy[1,5]
    + visitBy[2,4] - visitBy[2,5] + visitBy[3,4] - visitBy[3,5]
    + visitBy[4,4] - visitBy[4,5] + visitBy[5,4] - visitBy[5,5]
    + visitBy[6,4] - visitBy[6,5] + visitBy[7,4] - visitBy[7,5]
@@ -2507,7 +2513,19 @@ Subject To
    + visitBy[12,4] - visitBy[12,5] + visitBy[13,4] - visitBy[13,5]
    + visitBy[14,4] - visitBy[14,5] + visitBy[15,4] - visitBy[15,5]
    + visitBy[16,4] - visitBy[16,5] >= 0
+ maxTravelTimeConstr[0]: travelTime[0] - maxTravelTime <= 0
+ maxTravelTimeConstr[1]: travelTime[1] - maxTravelTime <= 0
+ maxTravelTimeConstr[2]: travelTime[2] - maxTravelTime <= 0
+ maxTravelTimeConstr[3]: travelTime[3] - maxTravelTime <= 0
+ maxTravelTimeConstr[4]: travelTime[4] - maxTravelTime <= 0
+ maxTravelTimeConstr[5]: travelTime[5] - maxTravelTime <= 0
 Bounds
+ travelTime[0] <= 120
+ travelTime[1] <= 120
+ travelTime[2] <= 120
+ travelTime[3] <= 120
+ travelTime[4] <= 120
+ travelTime[5] <= 120
 Binaries
  FromToBy[0,1,0] FromToBy[0,1,1] FromToBy[0,1,2] FromToBy[0,1,3]
  FromToBy[0,1,4] FromToBy[0,1,5] FromToBy[0,2,0] FromToBy[0,2,1]
